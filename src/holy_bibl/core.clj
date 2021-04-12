@@ -1,0 +1,85 @@
+(ns holy-bibl.core
+  (:gen-class))
+
+(require '[clojure.data.xml :as xml]
+         '[clojure.string :as s])
+
+(defn- testaments []
+  (filter
+   #(= "testament" (:type (:attrs %)))
+   (-> (xml/parse (java.io.FileReader. "resources/American Standard Version.xml"))
+       :content
+       (nth 0)
+       :content)))
+
+(defn books []
+  (map
+   #(if (re-matches #"^\d.*" %)
+      (apply str (conj (vec (rest %)) (first %)))
+      %)
+   (reduce
+    #(when (= "book" (:type (:attrs %2)))
+       (conj %1 (:osisID (:attrs %2))))
+    []
+    (flatten (map :content (testaments))))))
+
+(defn- parse-args [args]
+  (when-not (s/blank? args)
+    (let [[chapter verses]
+          (s/split args #"[\.\:]")]
+      {:chapter chapter
+       :verses verses })))
+
+(defn- get-book [book-name]
+  (->>
+   (filter
+    #(= book-name (:osisID (:attrs %)))
+    (flatten (map :content (testaments))))
+   first
+   :content))
+
+(defn get-chapter [book-name chapter]
+  (->>
+   (filter
+    #(= (str book-name "." chapter) (:osisID (:attrs %)))
+    (get-book book-name))
+   first
+   :content))
+
+(defn get-verse [book-name chapter verse]
+  (reduce
+   #(str %1 %2)
+   ""
+   (flatten
+    (map
+     #(if (string? %)
+        %
+        (:content %))
+     (->>
+      (filter
+       #(= (str book-name "." chapter "." verse) (:osisID (:attrs %)))
+       (get-chapter book-name chapter))
+      first
+      :content)))))
+
+(defn- get-verses [book-name chapter verses]
+  (let [[f l] (s/split verses #"-")
+        l (if (nil? l) f l)]
+    (map
+     (partial get-verse book-name chapter)
+     (range (Integer/parseInt f) (inc (Integer/parseInt l))))))
+
+(defn- read-book [book-name args]
+  (let [book-name (if (re-matches #"^.*\d$" book-name)
+                    (apply str (conj (butlast book-name) (last book-name)))
+                    book-name)
+        {chapter :chapter verses :verses} (parse-args (first args))]
+    (cond
+      (nil? chapter) (get-book book-name)
+      (nil? verses) (get-chapter book-name chapter)
+      :else (get-verses book-name chapter verses))))
+
+(run!
+ #(intern *ns* (symbol %)
+          (fn [& args] (read-book % args)))
+ (books))
