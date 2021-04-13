@@ -12,7 +12,7 @@ books are functions:
 holy-bibl.core=> (Gen "1:14-16")
 ("And God said, Let there be lights in the firmament of heaven to divide the day from the night; and let them be for signs, and for seasons, and for days and years:" "and let them be for lights in the firmament of heaven to give light upon the earth: and it was so." "And God made the two great lights; the greater light to rule the day, and the lesser light to rule the night: he made the stars also.")
 ```
-number of chapter of a book:
+number of chapters of a book:
 ```
 holy-bibl.core=> (count (Exod))
 40
