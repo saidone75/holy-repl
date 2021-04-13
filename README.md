@@ -9,8 +9,9 @@ holy-bibl.core=> (books)
 ```
 books are functions:
 ```
-holy-bibl.core=> (Gen "1:14-16")
-("And God said, Let there be lights in the firmament of heaven to divide the day from the night; and let them be for signs, and for seasons, and for days and years:" "and let them be for lights in the firmament of heaven to give light upon the earth: and it was so." "And God made the two great lights; the greater light to rule the day, and the lesser light to rule the night: he made the stars also.")
+holy-bibl.core=> (Jer "29:11")
+("For I know the thoughts that I think toward you, saith Jehovah, thoughts of peace, and not of evil,
+to give you hope in your latter end.")
 ```
 number of chapters of a book:
 ```
