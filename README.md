@@ -1,7 +1,10 @@
 # holy-bibl
 The Holy BIBL in your REPL
 
-![Lisp](https://imgs.xkcd.com/comics/lisp.jpg)
+![Lisp](https://imgs.xkcd.com/comics/lisp.jpg) (*)
+
+(*) it's time to have it properly fixed!
+
 
 ## Usage
 List of books:
