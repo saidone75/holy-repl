@@ -38,7 +38,7 @@
    first
    :content))
 
-(defn get-chapter [book-name chapter]
+(defn- get-chapter [book-name chapter]
   (->>
    (filter
     #(= (str book-name "." chapter) (:osisID (:attrs %)))
@@ -46,7 +46,7 @@
    first
    :content))
 
-(defn get-verse [book-name chapter verse]
+(defn- get-verse [book-name chapter verse]
   (reduce
    #(str %1 %2)
    ""
@@ -83,3 +83,10 @@
  #(intern *ns* (symbol %)
           (fn [& args] (read-book % args)))
  (books))
+
+(defn random-verse []
+  (let [book-name (first (shuffle (books)))
+        book (ns-resolve *ns* (symbol book-name))
+        book-map (zipmap (range 1 (inc (count (book)))) (map #(inc (rand-int (count (:content %)))) (book)))
+        chapter (rand-nth (keys book-map))]
+    {(str book-name " " chapter ":" (get book-map chapter)) (book (str chapter ":" (get book-map chapter)))}))
