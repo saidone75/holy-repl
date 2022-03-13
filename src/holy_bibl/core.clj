@@ -46,21 +46,22 @@
    first
    :content))
 
+(defn- get-verse-content [verse]
+  (apply str
+         (map
+          #(if (string? %)
+             %
+             (get-verse-content (:content %)))
+          verse)))
+
 (defn- get-verse [book-name chapter verse]
-  (reduce
-   #(str %1 %2)
-   ""
-   (flatten
-    (map
-     #(if (string? %)
-        %
-        (:content %))
-     (->>
-      (filter
-       #(= (str book-name "." chapter "." verse) (:osisID (:attrs %)))
-       (get-chapter book-name chapter))
-      first
-      :content)))))
+  (get-verse-content
+   (->>
+    (filter
+     #(= (str book-name "." chapter "." verse) (:osisID (:attrs %)))
+     (get-chapter book-name chapter))
+    first
+    :content)))
 
 (defn- get-verses [book-name chapter verses]
   (let [[f l] (s/split verses #"-")
