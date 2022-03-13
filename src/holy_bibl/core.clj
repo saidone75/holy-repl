@@ -46,16 +46,15 @@
    first
    :content))
 
-(defn- get-verse-content [verse]
-  (apply str
-         (map
-          #(if (string? %)
-             %
-             (get-verse-content (:content %)))
-          verse)))
-
 (defn- get-verse [book-name chapter verse]
-  (get-verse-content
+  ((fn get-verse-content [verse]
+     (apply
+      str
+      (map
+       #(if (string? %)
+          %
+          (get-verse-content (:content %)))
+       verse)))
    (->>
     (filter
      #(= (str book-name "." chapter "." verse) (:osisID (:attrs %)))
