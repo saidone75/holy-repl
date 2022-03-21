@@ -55,12 +55,9 @@
      #(if (instance? clojure.data.xml.Element %)
         (:content %)
         %)
-     (->>
-      (filter
-       #(= (str book-name "." chapter "." verse) (:osisID (:attrs %)))
-       (get-chapter book-name chapter))
-      first
-      :content)))))
+     (filter
+      #(= (str book-name "." chapter "." verse) (:osisID (:attrs %)))
+      (get-chapter book-name chapter))))))
 
 (defn- get-verses [book-name chapter verses]
   (let [[f l] (s/split verses #"-")
