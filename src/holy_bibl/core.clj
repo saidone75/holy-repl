@@ -2,7 +2,8 @@
   (:gen-class))
 
 (require '[clojure.data.xml :as xml]
-         '[clojure.string :as s])
+         '[clojure.string :as s]
+         '[clojure.walk :as w])
 
 (defn- testaments []
   (filter
@@ -47,20 +48,19 @@
    :content))
 
 (defn- get-verse [book-name chapter verse]
-  ((fn get-verse-content [verse]
-     (apply
-      str
-      (map
-       #(if (string? %)
-          %
-          (get-verse-content (:content %)))
-       verse)))
-   (->>
-    (filter
-     #(= (str book-name "." chapter "." verse) (:osisID (:attrs %)))
-     (get-chapter book-name chapter))
-    first
-    :content)))
+  (apply
+   str
+   (flatten
+    (w/postwalk
+     #(if (instance? clojure.data.xml.Element %)
+        (:content %)
+        %)
+     (->>
+      (filter
+       #(= (str book-name "." chapter "." verse) (:osisID (:attrs %)))
+       (get-chapter book-name chapter))
+      first
+      :content)))))
 
 (defn- get-verses [book-name chapter verses]
   (let [[f l] (s/split verses #"-")
