@@ -1,10 +1,7 @@
 # holy-bibl
 The Holy BIBL in your REPL
 
-![Lisp](https://imgs.xkcd.com/comics/lisp.jpg) (*)
-
-(*) it's time to have it properly fixed!
-
+![Lisp](https://imgs.xkcd.com/comics/lisp.jpg)
 
 ## Usage
 List of books:
@@ -54,3 +51,8 @@ Number of books are postfixed as by default Clojure does not accept functions na
 At this point in the development please do not pay much attention to crashes or odd behaviours
 
 Suggestions, patches, pull requests and feedbacks are all welcome!
+
+## License
+Copyright (c) 2021-2022 Saidone
+
+Distributed under the MIT License
