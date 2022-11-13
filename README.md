@@ -1,4 +1,4 @@
-# holy-bibl
+# holy-repl
 The Holy BIBL in your REPL
 
 ![Lisp](https://imgs.xkcd.com/comics/lisp.jpg)
