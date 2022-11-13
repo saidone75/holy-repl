@@ -6,28 +6,28 @@ The Holy BIBL in your REPL
 ## Usage
 List of books:
 ```
-holy-bibl.core=> (books)
+holy-repl.core=> (books)
 ("Gen" "Exod" "Lev" "Num" "Deut" "Josh" "Judg" "Ruth" "Sam1" "Sam2" "Kgs1" "Kgs2" "Chr1" "Chr2" "Ezra" "Neh" "Esth" "Job" "Ps" "Prov" "Eccl" "Song" "Isa" "Jer" "Lam" "Ezek" "Dan" "Hos" "Joel" "Amos" "Obad" "Jonah" "Mic" "Nah" "Hab" "Zeph" "Hag" "Zech" "Mal" "Matt" "Mark" "Luke" "John" "Acts" "Rom" "Cor1" "Cor2" "Gal" "Eph" "Phil" "Col" "Thess1" "Thess2" "Tim1" "Tim2" "Titus" "Phlm" "Heb" "Jas" "Pet1" "Pet2" "John1" "John2" "John3" "Jude" "Rev")
 ```
 books are functions (as originally intended):
 ```
-holy-bibl.core=> (Jer "29:11")
+holy-repl.core=> (Jer "29:11")
 ("For I know the thoughts that I think toward you, saith Jehovah, thoughts of peace, and not of evil,
 to give you hope in your latter end.")
 ```
 multiple verses are (obviously) returned as a list:
 ```
-holy-bibl.core=> (Prov "3:5-6")
+holy-repl.core=> (Prov "3:5-6")
 ("Trust in Jehovah with all thy heart, And lean not upon thine own understanding:" "In all thy ways acknowledge him, And he will direct thy paths.")
 ```
 number of chapters of a book:
 ```
-holy-bibl.core=> (count (Exod))
+holy-repl.core=> (count (Exod))
 40
 ```
 chapter number and verses:
 ```
-holy-bibl.core=> (into
+holy-repl.core=> (into
             #_=>  (sorted-map)
             #_=>  (zipmap
             #_=>   (range 1 (inc (count (Exod))))
@@ -38,9 +38,9 @@ holy-bibl.core=> (into
 ```
 random verse:
 ```
-holy-bibl.core=> (random-verse)
+holy-repl.core=> (random-verse)
 {"Josh 23:11" ("Take good heed therefore unto yourselves, that ye love Jehovah your God.")}
-holy-bibl.core=> (random-verse)
+holy-repl.core=> (random-verse)
 {"Dan 7:3" ("And four great beasts came up from the sea, diverse one from another.")}
 ```
 Chapter and verse system is the standard, e.g.: (John "3:14–16") or (John "3.14–16") refers to the book of John, chapter 3, verses 14 through 16
