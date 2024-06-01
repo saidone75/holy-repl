@@ -87,4 +87,7 @@
         book (ns-resolve *ns* (symbol book-name))
         book-map (zipmap (range 1 (inc (count (book)))) (map #(inc (rand-int (count (:content %)))) (book)))
         chapter (rand-nth (keys book-map))]
-    {(str book-name " " chapter ":" (get book-map chapter)) (book (str chapter ":" (get book-map chapter)))}))
+    (first {(str book-name " " chapter ":" (get book-map chapter)) (book (str chapter ":" (get book-map chapter)))})))
+
+(defn random-verse-str []
+  ((comp first val) (random-verse)))
