@@ -1,8 +1,8 @@
-(defproject holy-repl "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
-  :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
-            :url "https://www.eclipse.org/legal/epl-2.0/"}
+(defproject holy-repl "1.0.0"
+  :description "The Holy BIBL in your REPL"
+  :url "https://saidone.org"
+  :license {:name "MIT License"
+            :url "https://github.com/saidone75/holy-repl/blob/main/LICENSE"}
   :dependencies [[org.clojure/clojure "1.11.3"]
                  [org.clojure/data.xml "0.0.8"]]
   :main ^:skip-aot holy-repl.core

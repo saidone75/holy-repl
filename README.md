@@ -53,6 +53,6 @@ At this point in the development please do not pay much attention to crashes or 
 Suggestions, patches, pull requests and feedbacks are all welcome!
 
 ## License
-Copyright (c) 2021-2022 Saidone
+Copyright (c) 2021-2024 Saidone
 
 Distributed under the MIT License
