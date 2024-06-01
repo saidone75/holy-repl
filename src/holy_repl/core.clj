@@ -1,5 +1,6 @@
 (ns holy-repl.core
-  (:gen-class))
+  (:gen-class)
+  (:import (java.io FileReader)))
 
 (require '[clojure.data.xml :as xml]
          '[clojure.string :as s]
@@ -8,7 +9,7 @@
 (defn- testaments []
   (filter
    #(= "testament" (:type (:attrs %)))
-   (-> (xml/parse (java.io.FileReader. "resources/American Standard Version.xml"))
+   (-> (xml/parse (FileReader. "resources/American Standard Version.xml"))
        :content
        (nth 0)
        :content)))
