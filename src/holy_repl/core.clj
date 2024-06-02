@@ -1,15 +1,19 @@
 (ns holy-repl.core
-  (:gen-class)
-  (:import (java.io FileReader)))
+  (:gen-class))
 
 (require '[clojure.data.xml :as xml]
          '[clojure.string :as s]
-         '[clojure.walk :as w])
+         '[clojure.walk :as w]
+         '[clojure.java.io :as io])
+
+(defn- is
+  []
+  (io/input-stream (io/resource "American Standard Version.xml")))
 
 (defn- testaments []
   (filter
     #(= "testament" (:type (:attrs %)))
-    (-> (xml/parse (FileReader. "resources/American Standard Version.xml"))
+    (-> (xml/parse (is))
         :content
         (nth 0)
         :content)))
@@ -18,7 +22,8 @@
   "Returns the list of books.
   ```clojure
   ((juxt first last) (books))
-  => [\"Gen\" \"Rev\"]```"
+  => [\"Gen\" \"Rev\"]
+  ```"
   []
   (map
     #(if (re-matches #"^\d.*" %)
@@ -92,7 +97,8 @@
   The key is the name of the book followed by chapter and verse numbers.
   ```clojure
   (random-verse)
-  => [\"John 2:6\" (\"Now there were six waterpots of stone set there after the Jews' manner of purifying, containing two or three firkins apiece.\")]```"
+  => [\"John 2:6\" (\"Now there were six waterpots of stone set there after the Jews' manner of purifying, containing two or three firkins apiece.\")]
+  ```"
   []
   (let [book-name (first (shuffle (books)))
         book (ns-resolve *ns* (symbol book-name))
@@ -104,6 +110,7 @@
   "Returns a random verse as a string.
   ```clojure
   (random-verse-str)
-  => \"O Jehovah, to thee do I cry; for the fire hath devoured the pastures of the wilderness, and the flame hath burned all the trees of the field.\"```"
+  => \"O Jehovah, to thee do I cry; for the fire hath devoured the pastures of the wilderness, and the flame hath burned all the trees of the field.\"
+  ```"
   []
   ((comp first val) (random-verse)))
