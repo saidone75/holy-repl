@@ -1,8 +1,9 @@
 # holy-repl
 The Holy BIBL in your REPL
 
-[![Clojars Version](https://img.shields.io/clojars/v/org.saidone/holy-repl)](https://clojars.org/org.saidone/holy-repl)
+[![Clojars Project](https://img.shields.io/clojars/v/org.saidone/holy-repl.svg)](https://clojars.org/org.saidone/holy-repl)
 [![cljdoc badge](https://cljdoc.org/badge/org.saidone/holy-repl)](https://cljdoc.org/d/org.saidone/holy-repl)
+
 
 ![Lisp](https://imgs.xkcd.com/comics/lisp.jpg)
 
