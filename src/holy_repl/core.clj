@@ -112,7 +112,7 @@
 (defn secure-random-verse
   "Returns a map entry representing a random verse from a random book.
   The key is the name of the book followed by chapter and verse numbers.\\
-  Like [[random-verse-str]] but using FIPS 140-2 compliant RNG to determine all collections indices.
+  Like [[random-verse]] but using FIPS 140-2 compliant RNG to determine all collections indices.
   ```clojure
   (secure-random-verse)
   => [\"Deut 9:12\"\n (\"And Jehovah said unto me, Arise, get thee down quickly from hence; for thy people that thou
