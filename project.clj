@@ -1,4 +1,4 @@
-(defproject org.saidone/holy-repl "1.0.0"
+(defproject org.saidone/holy-repl "1.0.1"
   :description "The Holy BIBL in your REPL"
   :url "https://saidone.org"
   :license {:name "MIT License"
