@@ -112,9 +112,9 @@
 (defn secure-random-verse
   "Returns a map entry representing a random verse from a random book.
   The key is the name of the book followed by chapter and verse numbers.\\
-  Unlike [[random-verse]] this uses a FIPS 140-2 compliant RNG to determine all collections indices.
+  Like [[random-verse-str]] but using FIPS 140-2 compliant RNG to determine all collections indices.
   ```clojure
-  (random-verse)
+  (secure-random-verse)
   => [\"Deut 9:12\"\n (\"And Jehovah said unto me, Arise, get thee down quickly from hence; for thy people that thou
   hast brought forth out of Egypt have corrupted themselves; they are quickly turned aside out of the way which I
   commanded them; they have made them a molten image.\")]
@@ -139,9 +139,9 @@
 
 (defn secure-random-verse-str
   "Returns a random verse as a string.\\
-  Unlike [[random-verse-str]] this uses a FIPS 140-2 compliant RNG to determine all collections indices.
+  Like [[random-verse-str]] but using FIPS 140-2 compliant RNG to determine all collections indices.
   ```clojure
-  (random-verse-str)
+  (secure-random-verse-str)
   => \"And Absalom answered Joab, Behold, I sent unto thee, saying, Come hither, that I may send thee to the king, to
   say, Wherefore am I come from Geshur? it were better for me to be there still. Now therefore let me see the king's
   face; and if there be iniquity in me, let him kill me.\"
