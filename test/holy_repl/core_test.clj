@@ -9,4 +9,4 @@
   (is (= (first (Luke "12:38")) "And if he shall come in the second watch, and if in the third, and find them so, blessed are those servants.")))
 
 (deftest print-Luke-6-21
-  (print (Luke "6:21")))
+  (is (= nil (print (Luke "6:21")))))
